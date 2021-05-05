@@ -1,5 +1,5 @@
 {
-    "name": "laravel/cashier",
+    "name": "ruerdev/cashier-stripe",
     "description": "Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
     "keywords": ["laravel", "stripe", "billing"],
     "license": "MIT",
@@ -27,6 +27,7 @@
         "illuminate/view": "^6.0|^7.0|^8.0",
         "moneyphp/money": "^3.2",
         "nesbot/carbon": "^2.0",
+        "spatie/laravel-ray": "^1.17",
         "stripe/stripe-php": "^7.39",
         "symfony/http-kernel": "^4.3|^5.0",
         "symfony/polyfill-intl-icu": "^1.22.1"

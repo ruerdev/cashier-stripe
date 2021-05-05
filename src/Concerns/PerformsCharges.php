@@ -19,9 +19,9 @@ trait PerformsCharges
     /**
      * Make a "one off" charge on the customer for the given amount.
      *
-     * @param  int  $amount
-     * @param  string  $paymentMethod
-     * @param  array  $options
+     * @param int $amount
+     * @param string $paymentMethod
+     * @param array $options
      * @return \Laravel\Cashier\Payment
      *
      * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
@@ -54,8 +54,8 @@ trait PerformsCharges
     /**
      * Refund a customer for a charge.
      *
-     * @param  string  $paymentIntent
-     * @param  array  $options
+     * @param string $paymentIntent
+     * @param array $options
      * @return \Stripe\Refund
      */
     public function refund($paymentIntent, array $options = [])
@@ -69,15 +69,15 @@ trait PerformsCharges
     /**
      * Begin a new checkout session for existing prices.
      *
-     * @param  array|string  $items
-     * @param  int  $quantity
-     * @param  array  $sessionOptions
-     * @param  array  $customerOptions
+     * @param array|string $items
+     * @param int $quantity
+     * @param array $sessionOptions
+     * @param array $customerOptions
      * @return \Laravel\Cashier\Checkout
      */
     public function checkout($items, array $sessionOptions = [], array $customerOptions = [])
     {
-        $items = collect((array) $items)->map(function ($item, $key) {
+        $items = collect((array)$items)->map(function ($item, $key) {
             if (is_string($key)) {
                 return ['price' => $key, 'quantity' => $item];
             }
@@ -89,20 +89,25 @@ trait PerformsCharges
             return $item;
         })->values()->all();
 
-        return Checkout::create($this, array_merge([
-            'allow_promotion_codes' => $this->allowPromotionCodes,
+        $checkout_variables = [
             'line_items' => $items,
-        ], $sessionOptions), $customerOptions);
+        ];
+
+        if ($this->allowPromotionCodes) {
+            $checkout_variables['allow_promotion_codes'] = $this->allowPromotionCodes;
+        }
+
+        return Checkout::create($this, array_merge($checkout_variables, $sessionOptions), $customerOptions);
     }
 
     /**
      * Begin a new checkout session for a "one-off" charge.
      *
-     * @param  int  $amount
-     * @param  string  $name
-     * @param  int  $quantity
-     * @param  array  $sessionOptions
-     * @param  array  $customerOptions
+     * @param int $amount
+     * @param string $name
+     * @param int $quantity
+     * @param array $sessionOptions
+     * @param array $customerOptions
      * @return \Laravel\Cashier\Checkout
      */
     public function checkoutCharge($amount, $name, $quantity = 1, array $sessionOptions = [], array $customerOptions = [])
