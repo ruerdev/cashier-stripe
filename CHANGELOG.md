@@ -1,6 +1,37 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/cashier/compare/v12.13.0...12.x)
+## [Unreleased](https://github.com/laravel/cashier/compare/v12.15.0...12.x)
+
+
+## [v12.15.0 (2021-06-22)](https://github.com/laravel/cashier/compare/v12.14.1...v12.15.0)
+
+### Added
+- Implement webhook command ([#1202](https://github.com/laravel/cashier-stripe/pull/1202))
+
+
+## [v12.14.1 (2021-06-01)](https://github.com/laravel/cashier/compare/v12.14.0...v12.14.1)
+
+### Fixed
+- Fix broken `unit_amount` with `tab` ([9246063](https://github.com/laravel/cashier-stripe/commit/9246063882a09c29521e61a86e84f34cb86098c1))
+
+
+## [v12.14.0 (2021-05-25)](https://github.com/laravel/cashier/compare/v12.13.1...v12.14.0)
+
+### Added
+- Support prorations while extending trials ([#1151](https://github.com/laravel/cashier-stripe/pull/1151))
+- Add extra methods to invoice object ([#1167](https://github.com/laravel/cashier-stripe/pull/1167))
+
+### Fixed
+- Add extra 10 seconds of trial time for checkout session ([#1160](https://github.com/laravel/cashier-stripe/pull/1160))
+- Fix adding invoice item with quantities ([#1161](https://github.com/laravel/cashier-stripe/pull/1161))
+- Fix coupons with Stripe Checkout sessions ([#1165](https://github.com/laravel/cashier-stripe/pull/1165))
+- Fix checkout owner ([7bbfe23](https://github.com/laravel/cashier-stripe/commit/7bbfe234c5f1657eee1223f9aee73b03bdef9894))
+
+
+## [v12.13.1 (2021-05-11)](https://github.com/laravel/cashier/compare/v12.13.0...v12.13.1)
+
+### Fixed
+- Fix discount calculation ([#1144](https://github.com/laravel/cashier-stripe/pull/1144))
 
 
 ## [v12.13.0 (2021-04-27)](https://github.com/laravel/cashier/compare/v12.12.0...v12.13.0)
